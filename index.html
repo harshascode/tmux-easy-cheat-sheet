@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)file:///home/harsh/Downloads/online_viewer_net%20(1).html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tmux Easy Cheat Sheet</title>
+    <meta name="description" content="A comprehensive, mobile-friendly tmux cheat sheet. Learn how to manage sessions, navigate panes, split terminals, and master tmux CLI commands.">
+    <meta name="keywords" content="tmux cheat sheet, tmux commands, terminal multiplexer, linux terminal, tmux panes, tmux sessions, bash productivity">
+    <meta name="author" content="Tmux Guide">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://your-domain.com/tmux-cheat-sheet.html">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --text-main: #c9d1d9;
+            --text-dim: #8b949e;
+            --accent: #58a6ff;
+            --command: #79c0ff;
+            --shortcut: #ffa657;
+            --border: #30363d;
+            --success: #3fb950;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .wrapper { max-width: 900px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        h1 { color: var(--accent); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 2px; font-size: 1.8rem; }
+        p.subtitle { color: var(--text-dim); margin-top: 0; }
+
+        .how-to-use {
+            background: #1c2128;
+            border-left: 4px solid var(--shortcut);
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+
+        .how-to-use h3 { margin-top: 0; color: var(--shortcut); font-size: 1rem; text-transform: uppercase; }
+
+        .step-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .step { background: var(--bg-color); padding: 10px 15px; border-radius: 6px; border: 1px solid var(--border); flex: 1; min-width: 200px; }
+        .step span { display: block; font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; }
+        .step b { color: var(--shortcut); font-family: monospace; font-size: 1.1rem; }
+
+        .arrow { color: var(--text-dim); font-weight: bold; }
+
+        section { margin-bottom: 40px; }
+
+        h2 {
+            font-size: 1.1rem;
+            color: var(--accent);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        td { padding: 12px 15px; border-bottom: 1px solid var(--border); }
+
+        .cmd-cell {
+            font-family: "SFMono-Regular", Consolas, monospace;
+            width: 40%;
+        }
+
+        .prefix-tag { color: var(--text-dim); font-size: 0.9rem; }
+        .key-tag { 
+            color: var(--shortcut); 
+            background: rgba(255, 166, 87, 0.1); 
+            padding: 2px 6px; 
+            border-radius: 4px; 
+            border: 1px solid rgba(255, 166, 87, 0.3);
+        }
+
+        .cli-cmd { color: var(--command); font-weight: bold; }
+
+        .desc { color: var(--text-main); }
+        .desc strong { color: #fff; }
+
+        footer {
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            margin-top: 60px;
+            padding-bottom: 40px;
+        }
+
+        kbd {
+            background: #21262d;
+            border: 1px solid var(--border);
+            border-radius: 3px;
+            padding: 1px 5px;
+            font-size: 0.9em;
+            color: var(--shortcut);
+        }
+
+        @media (max-width: 600px) {
+            .cmd-cell { width: 50%; }
+            .step-container { flex-direction: column; align-items: flex-start; }
+            .arrow { transform: rotate(90deg); align-self: center; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <header>
+        <h1>Tmux Easy Cheat Sheet</h1>
+        <p class="subtitle">Productivity Guide for the Terminal Multiplexer</p>
+    </header>
+
+    <div class="how-to-use">
+        <h3>How to trigger shortcuts inside Tmux:</h3>
+        <p style="margin-bottom: 15px; font-size: 0.95rem;">Most commands won't work unless you "wake up" Tmux first using the <strong>Prefix</strong>. It's a two-step sequence:</p>
+        
+        <div class="step-container">
+            <div class="step">
+                <span>Step 1: The Wake Up</span>
+                Press <b>Ctrl + b</b> then <u>release</u>.
+            </div>
+            <div class="arrow">→</div>
+            <div class="step">
+                <span>Step 2: The Action</span>
+                Tap the <b>Command Key</b> (e.g., <kbd>%</kbd> or <kbd>c</kbd>).
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <h2>1. Start-up Commands (In your normal terminal)</h2>
+        <table>
+            <tbody><tr>
+                <td class="cmd-cell cli-cmd">tmux</td>
+                <td class="desc">Open a new unnamed session</td>
+            </tr>
+            <tr>
+                <td class="cmd-cell cli-cmd">tmux new -s [name]</td>
+                <td class="desc">Start a <strong>named</strong> session</td>
+            </tr>
+            <tr>
+                <td class="cmd-cell cli-cmd">tmux ls</td>
+                <td class="desc">Show all active sessions</td>
+            </tr>
+            <tr>
+                <td class="cmd-cell cli-cmd">tmux a</td>
+                <td class="desc">Attach to the <strong>last used</strong> session</td>
+            </tr>
+            <tr>
+                <td class="cmd-cell cli-cmd">tmux a -t [name]</td>
+                <td class="desc">Attach to a <strong>specific</strong> session</td>
+            </tr>
+            <tr>
+                <td class="cmd-cell cli-cmd">tmux kill-session -t [name]</td>
+                <td class="desc">Delete a specific session</td>
+            </tr>
+            <tr>
+                <td class="cmd-cell cli-cmd">tmux kill-server</td>
+                <td class="desc">Kill <strong>all</strong> sessions and stop tmux</td>
+            </tr>
+        </tbody></table>
+    </section>
+
+    <section>
+        <h2>2. Managing Panes (Inside Tmux)</h2>
+        <table>
+            <tbody><tr>
+                <td class="cmd-cell"><span class="prefix-tag">Ctrl+b →</span> <span class="key-tag">%</span></td>
+                <td class="desc">Split <strong>Vertically</strong> (side-by-side)</td>
+            </tr>
+            <tr>
+                <td class="cmd-cell"><span class="prefix-tag">Ctrl+b →</span> <span class="key-tag">"</span></td>
+                <td class="desc">Split <strong>Horizontally</strong> (top/bottom)</td>
+            </tr>
+            <tr>
+                <td class="cmd-cell"><span class="prefix-tag">Ctrl+b →</span> <span class="key-tag">Arrows</span></td>
+                <td class="desc">Move between panes</td>
+            </tr>
+            <tr>
+                <td class="cmd-cell"><span class="prefix-tag">Ctrl+b →</span> <span class="key-tag">z</span></td>
+                <td class="desc"><strong>Zoom</strong>: Toggle full screen for one pane</td>
+            </tr>
+            <tr>
+                <td class="cmd-cell"><span class="prefix-tag">Ctrl+b →</span> <span class="key-tag">q</span></td>
+                <td class="desc">Show <strong>pane numbers</strong> (type number to jump)</td>
+            </tr>
+            <tr>
+                <td class="cmd-cell"><span class="prefix-tag">Ctrl+b →</span> <span class="key-tag">o</span></td>
+                <td class="desc">Rotate through all panes</td>
+            </tr>
+            <tr>
+                <td class="cmd-cell"><span class="prefix-tag">Ctrl+b →</span> <span class="key-tag">x</span></td>
+                <td class="desc">Close current pane</td>
+            </tr>
+        </tbody></table>
+    </section>
+
+    <section>
+        <h2>3. Windows &amp; Sessions (Inside Tmux)</h2>
+        <table>
+            <tbody><tr>
+                <td class="cmd-cell"><span class="prefix-tag">Ctrl+b →</span> <span class="key-tag">c</span></td>
+                <td class="desc">Create a <strong>New Window</strong> (Tab)</td>
+            </tr>
+            <tr>
+                <td class="cmd-cell"><span class="prefix-tag">Ctrl+b →</span> <span class="key-tag">n / p</span></td>
+                <td class="desc"><strong>Next</strong> or <strong>Previous</strong> window</td>
+            </tr>
+            <tr>
+                <td class="cmd-cell"><span class="prefix-tag">Ctrl+b →</span> <span class="key-tag">,</span></td>
+                <td class="desc"><strong>Rename</strong> current window</td>
+            </tr>
+            <tr>
+                <td class="cmd-cell"><span class="prefix-tag">Ctrl+b →</span> <span class="key-tag">d</span></td>
+                <td class="desc"><strong>Detach</strong> (Leave Tmux running in background)</td>
+            </tr>
+            <tr>
+                <td class="cmd-cell"><span class="prefix-tag">Ctrl+b →</span> <span class="key-tag">s</span></td>
+                <td class="desc">List all sessions (Interactive menu)</td>
+            </tr>
+            <tr>
+                <td class="cmd-cell"><span class="prefix-tag">Ctrl+b →</span> <span class="key-tag">$</span></td>
+                <td class="desc"><strong>Rename</strong> current session</td>
+            </tr>
+        </tbody></table>
+    </section>
+
+    <section>
+        <h2>4. Utilities &amp; Help</h2>
+        <table>
+            <tbody><tr>
+                <td class="cmd-cell"><span class="prefix-tag">Ctrl+b →</span> <span class="key-tag">[</span></td>
+                <td class="desc"><strong>Scroll / Copy Mode</strong> (Press <kbd>q</kbd> to exit)</td>
+            </tr>
+            <tr>
+                <td class="cmd-cell"><span class="prefix-tag">Ctrl+b →</span> <span class="key-tag">?</span></td>
+                <td class="desc">Show <strong>all</strong> shortcut keybindings</td>
+            </tr>
+            <tr>
+                <td class="cmd-cell"><span class="prefix-tag">Ctrl+b →</span> <span class="key-tag">t</span></td>
+                <td class="desc">Display a digital <strong>clock</strong></td>
+            </tr>
+        </tbody></table>
+    </section>
+
+    <footer>
+        <p>Pro Tip: You can customize your prefix by editing the <code>.tmux.conf</code> file in your home directory.</p>
+    </footer>
+</div>
+
+
+</body></html>
